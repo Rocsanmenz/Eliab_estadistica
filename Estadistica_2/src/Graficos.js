@@ -5,6 +5,7 @@ import GraficoGeneros from './GraficoGeneros';
 import Formulario from './Formulario';
 import GraficoReporteEnfermedades from './GraficoReporteEnfermedades';
 import GraficoBezier from './GraficoBezier';
+import GraficoBezier from  
 import { collection, getDocs, query } from 'firebase/firestore';
 
 //Importación de conexión a firebase
@@ -129,11 +130,12 @@ export default function Graficos() {
   return (
     <View style={styles.container} >
       <ScrollView contentContainerStyle={styles.scrollView}>
-        {/* <Formulario setBandera={setBandera}/> */}
+        <Formulario setBandera={setBandera}/>
         <GraficoSalarios dataSalarios={dataSalarios}/>
         <GraficoBezier dataSalarios={dataSalarios}/>
         <GraficoGeneros dataGeneros={dataGeneros}/>
         <GraficoReporteEnfermedades dataReporteEnfermedades={dataReporteEnfermedades}/>
+
       </ScrollView>
 
     </View>
