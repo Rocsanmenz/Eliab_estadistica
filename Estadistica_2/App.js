@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import GraficoSalarios from './src/GraficoSalarios';
-import GraficoGeneros from './src/GraficoGenero';
-import Formulario from './src/Formulario';
+import GraficoGeneros from './src/GraficoGeneros';
 import GraficoReporteEnfermedades from './src/GraficoReporteEnfermedades';
 import GraficoBezier from './src/GraficoBezier';
 import { collection, getDocs, query } from 'firebase/firestore';

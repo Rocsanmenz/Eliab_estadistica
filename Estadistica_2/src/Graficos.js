@@ -5,12 +5,13 @@ import GraficoGeneros from './GraficoGeneros';
 import Formulario from './Formulario';
 import GraficoReporteEnfermedades from './GraficoReporteEnfermedades';
 import GraficoBezier from './GraficoBezier';
-import GraficoBezier from  
+import GraficoProgreso from './GraficoProgreso';
+
 import { collection, getDocs, query } from 'firebase/firestore';
+
 
 //Importación de conexión a firebase
 import db from '../database/firebaseconfig';
-
 
 export default function Graficos() {
 
@@ -20,6 +21,11 @@ export default function Graficos() {
     datasets: [{ data: [0] }]
   });
   const [dataGeneros, setDataGeneros] = useState([]); // Para almacenar datos de géneros
+
+  const [dataProgreso, setDataProgreso] = useState({
+    labels: [''],
+    data: [0]
+  });
 
   const dataReporteEnfermedades = [
     { date: "2017-01-05", count: 8 }, 
@@ -63,7 +69,7 @@ export default function Graficos() {
             nombres.push(nombre); // Agrega nombre a la lista
             salarios.push(salario); // Agrega edad a la lista
         });
-
+        
         // Actualiza el estado con el formato requerido
         setDataSalarios({
           labels: nombres,
@@ -116,6 +122,15 @@ export default function Graficos() {
             legendFontSize: 12
           }
         ];
+          
+        totalPersonas = masculino + femenino;
+
+        const progresos = [masculino/totalPersonas, femenino/totalPersonas]
+
+        setDataProgreso({
+          labels: ['Hombres', 'Mujeres'],
+          data: progresos
+        });
 
         setDataGeneros(totalData);
         console.log(totalData);
@@ -130,12 +145,17 @@ export default function Graficos() {
   return (
     <View style={styles.container} >
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Formulario setBandera={setBandera}/>
+        <Formulario setBandera={setBandera}/> 
         <GraficoSalarios dataSalarios={dataSalarios}/>
         <GraficoBezier dataSalarios={dataSalarios}/>
+
+        <GraficoProgreso 
+          dataProgreso={dataProgreso}
+          colors={['rgba(131, 167, 234, 0.5)', 'rgba(255, 105, 180, 0.5)']}   
+        />
+
         <GraficoGeneros dataGeneros={dataGeneros}/>
         <GraficoReporteEnfermedades dataReporteEnfermedades={dataReporteEnfermedades}/>
-
       </ScrollView>
 
     </View>
@@ -155,5 +175,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
   },
-}); 
-
+});
