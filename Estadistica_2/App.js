@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import GraficoSalarios from './src/GraficoSalarios';
 import GraficoGeneros from './src/GraficoGeneros';
-import GraficoReporteEnfermedades from './src/GraficoReporteEnfermedades';
 import GraficoBezier from './src/GraficoBezier';
 import { collection, getDocs, query } from 'firebase/firestore';
 import GraficoProgreso from './src/GraficoProgreso';
+
+
 
 //Importación de conexión a firebase
 import db from './Firebaseconfig';
@@ -148,7 +149,6 @@ export default function Graficos() {
         <GraficoSalarios dataSalarios={dataSalarios}/>
         <GraficoBezier dataSalarios={dataSalarios}/>
         <GraficoGeneros dataGeneros={dataGeneros}/>
-        <GraficoReporteEnfermedades dataReporteEnfermedades={dataReporteEnfermedades}/>
         <GraficoProgreso 
           dataProgreso={dataProgreso}
           colors={['rgba(131, 167, 234, 0.5)', 'rgba(255, 105, 180, 0.5)']}   
